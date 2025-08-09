@@ -8,7 +8,7 @@ function App() {
 
   // Fetch notes from backend
   const fetchNotes = () => {
-    axios.get("https://noteitdep.onrender.com/api/notes")
+    axios.get(`${process.env.REACT_APP_API_URL}/api/notes`)
       .then((res) => {
         setNotes(res.data);
       })
@@ -25,7 +25,7 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.post("https://noteitdep.onrender.com/api/notes", {
+    axios.post(`${process.env.REACT_APP_API_URL}/api/notes`, {
       title,
       content
     })
@@ -41,7 +41,7 @@ function App() {
 
   // DELETE note
   const deleteNote = (id) => {
-    axios.delete(`https://noteitdep.onrender.com/api/notes/${id}`)
+    axios.delete(`${process.env.REACT_APP_API_URL}/api/notes/${id}`)
       .then(() => {
         fetchNotes(); // Refresh after deletion
       })
